@@ -5,6 +5,7 @@
   "main": "dist/emmet-codemirror-plugin.cjs.js",
   "module": "dist/emmet-codemirror-plugin.es.js",
   "scripts": {
+    "test": "mocha --watch",
     "build": "rollup -c",
     "watch": "rollup -wc",
     "build:browser": "rollup -c bundle-rollup.config.js",
@@ -27,7 +28,9 @@
     "example.html"
   ],
   "devDependencies": {
+    "chai": "^4.1.0",
     "codemirror": "^5.25.2",
+    "mocha": "^3.4.2",
     "rollup": "^0.41.6",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-node-resolve": "^3.0.0",

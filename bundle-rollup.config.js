@@ -8,8 +8,8 @@ export default {
 	entry: './browser.js',
 	plugins: [
 		nodeResolve(),
-		buble(),
-		uglify()
+		buble()
+		// uglify()
 	],
 	moduleName: 'emmetCodeMirrorPlugin',
 	format: 'umd',

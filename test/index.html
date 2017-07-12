@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Emmet Commands Tests</title>
+  <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="../node_modules/codemirror/addon/hint/show-hint.css" />
+  <link rel="stylesheet" href="../node_modules/codemirror/addon/dialog/dialog.css" />
+  <script src="../node_modules/codemirror/lib/codemirror.js"></script>
+  <script src="../node_modules/codemirror/addon/dialog/dialog.js"></script>
+  <script src="../node_modules/codemirror/mode/xml/xml.js"></script>
+  <script src="../node_modules/codemirror/mode/css/css.js"></script>
+  <script src="../node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="../node_modules/codemirror/addon/hint/show-hint.js"></script>
+  <script src="../dist/emmet-codemirror-plugin.js"></script>
+  
+  <!-- Test Specific Code -->
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  <script src="./helpers/test-utils.js"></script>
+  <script src="./helpers/test-settings.js"></script>
+  <style>
+  .hidden {
+    /*display: none;*/
+  }
+  </style>
+</head>
+
+<body>
+  <div class="codemirror-instance hidden">
+    <form>
+      <textarea id="code" name="code"></textarea>
+    </form>
+  </div>
+  <script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), testSettings.baseSettings);
+  </script>
+  <!-- Test Code -->
+  <div id="mocha"></div>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script>
+  mocha.ui('bdd');
+  mocha.reporter('html');
+  var expect = chai.expect;
+  </script>
+  <script src="./expand-abbreviation--test.js"></script>
+  <script src="./formatted-line-break--test.js"></script>
+  <script>
+  mocha.run();
+  </script>
+</body>
+
+</html>

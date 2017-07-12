@@ -2,16 +2,32 @@
 
 import emmetExpandAbbreviation from './lib/commands/expand-abbreviation';
 import emmetInsertLineBreak from './lib/commands/formatted-line-break';
+import emmetWrapWithAbbreviation from './lib/commands/wrap-with-abbreviation';
+
 import {
-	markOnEditorChange, findMarker, markAbbreviation, clearMarkers
+	markOnEditorChange,
+	findMarker,
+	markAbbreviation,
+	clearMarkers
 } from './lib/abbreviation-marker';
+
 import autocompleteProvider from './lib/autocomplete';
-import { extractAbbreviation, parseAbbreviation, createAbbreviationModel } from './lib/expand-abbreviation';
+
+import {
+	extractAbbreviation,
+	parseAbbreviation,
+	createAbbreviationModel
+} from './lib/expand-abbreviation';
+
 import getModel, { getCachedModel, resetCachedModel } from './lib/model/index';
 import matchTag, { clearTagMatch } from './lib/match-tag';
 import renameTag from './lib/rename-tag';
 
-const commands = { emmetExpandAbbreviation, emmetInsertLineBreak };
+const commands = {
+	emmetExpandAbbreviation,
+	emmetInsertLineBreak,
+	emmetWrapWithAbbreviation
+};
 
 /**
  * Registers Emmet extension on given CodeMirror constructor.
@@ -75,7 +91,9 @@ export default function registerEmmetExtension(CodeMirror) {
 		pos = pos || editor.getCursor();
 		if (editor.getOption('markEmmetAbbreviation')) {
 			// Get completions from auto-inserted marker
-			const marker = findMarker(editor, pos) || (force && markAbbreviation(editor, pos, true));
+			const marker =
+				findMarker(editor, pos) ||
+				(force && markAbbreviation(editor, pos, true));
 			if (marker) {
 				abbrRange = marker.find();
 				list = autocompleteProvider(editor, marker.model, abbrRange.from, pos);
@@ -89,7 +107,10 @@ export default function registerEmmetExtension(CodeMirror) {
 				if (model) {
 					abbrRange = {
 						from: { line: pos.line, ch: extracted.location },
-						to: { line: pos.line, ch: extracted.location + extracted.abbreviation.length }
+						to: {
+							line: pos.line,
+							ch: extracted.location + extracted.abbreviation.length
+						}
 					};
 					list = autocompleteProvider(editor, model, abbrRange.from, pos);
 				}
@@ -134,7 +155,7 @@ export default function registerEmmetExtension(CodeMirror) {
 				return {
 					abbreviation: extracted.abbreviation,
 					ast: parseAbbreviation(extracted.abbreviation, editor),
-					location: { line: pos.line,  ch: extracted.location },
+					location: { line: pos.line, ch: extracted.location },
 					fromMarker: false
 				};
 			} catch (err) {
