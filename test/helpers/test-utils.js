@@ -5,6 +5,8 @@
 var testUtils = {
   clearCodeMirrorEditor: function() {
     editor.setValue('');
+    editor.setOption('indentWithTabs', false);
+    editor.setOption('indentUnit', 2);
   },
 
   setLanguage: function(language) {
