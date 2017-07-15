@@ -1,4 +1,3 @@
-// spec.js
 describe('Emmet Expand Abbreviation Command (expand-abbreviation.js)', function() {
   beforeEach(function() {});
 
@@ -22,6 +21,16 @@ describe('Emmet Expand Abbreviation Command (expand-abbreviation.js)', function(
     editor.execCommand('emmetExpandAbbreviation');
 
     expect(editor.getValue()).to.be.equal('background: #000;');
+  });
+
+  it('CSS: Still expand when enclosed in brackets', function() {
+    testUtils.prepare({ language: 'css' });
+
+    editor.setValue('.h1{bg}');
+    editor.setCursor({ line: 0, ch: 6 });
+    editor.execCommand('emmetExpandAbbreviation');
+
+    expect(editor.getValue()).to.be.equal('.h1{background: #000;}');
   });
 
   it("CSS: Don't expand on class names", function() {
