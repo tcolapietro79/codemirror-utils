@@ -1,4 +1,4 @@
-describe('Testing Formatted Line Break Command (formatted-line-break.js)', function() {
+describe('Formatted Line Break Command (formatted-line-break.js)', function() {
   beforeEach(function() {});
 
   // HTML Tests

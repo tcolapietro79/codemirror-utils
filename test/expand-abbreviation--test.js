@@ -1,4 +1,4 @@
-describe('Emmet Expand Abbreviation Command (expand-abbreviation.js)', function() {
+describe('Expand Abbreviation Command (expand-abbreviation.js)', function() {
   beforeEach(function() {});
 
   // HTML Tests
