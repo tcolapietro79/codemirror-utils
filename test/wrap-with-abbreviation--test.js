@@ -6,13 +6,10 @@ describe('Wrap With Abbreviation Command (wrap-with-abbreviation.js)', function(
     testUtils.prepare({ language: 'htmlmixed' });
 
     editor.setValue('<div></div>');
-    editor.setCursor({ line: 0, ch: 5 });
-    editor.execCommand('emmetInsertLineBreak');
+    editor.setSelection({ line: 0, ch: 0 }, { line: 0, ch: 12 });
+    window.codeMirrorTestDialogData = 'div';
+    editor.execCommand('emmetWrapWithAbbreviation');
 
-    expect(editor.getValue()).to.be.equal('<div>\n  \n</div>');
-
-    var cursor = editor.getCursor();
-    expect(cursor.line).to.be.equal(1);
-    expect(cursor.ch).to.be.equal(2);
+    expect(editor.getValue()).to.be.equal('<div>\n  <div></div>\n</div>');
   });
 });

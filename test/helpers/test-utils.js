@@ -7,6 +7,7 @@ var testUtils = {
     editor.setValue('');
     editor.setOption('indentWithTabs', false);
     editor.setOption('indentUnit', 2);
+    delete window.codeMirrorTestDialogData;
   },
 
   setLanguage: function(language) {
